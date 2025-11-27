@@ -1,6 +1,12 @@
-# Git Commit Writer Pipeline
+# Git Commit Multi-Agent
 
+# Environment
 .env
+.venv/
+venv/
+ENV/
+
+# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -14,12 +20,18 @@ build/
 .pytest_cache/
 .coverage
 htmlcov/
-.venv/
-venv/
-ENV/
 .mypy_cache/
+
+# IDEs
 .vscode/
 .idea/
+.history/
+
+# OS
 *.log
 .DS_Store
 Thumbs.db
+
+# Package builds
+*.whl
+*.tar.gz

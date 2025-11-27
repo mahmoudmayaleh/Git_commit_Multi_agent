@@ -74,6 +74,31 @@ All agents share a central `PipelineState` object:
 
 ## Installation
 
+### Quick Install (Recommended)
+
+Install directly from GitHub:
+
+```bash
+pip install git+https://github.com/mahmoudmayaleh/Git_commit_Multi_agent.git
+```
+
+After installation, you can use the command:
+
+```bash
+git-commit-ai --help
+```
+
+### Alternative: Install from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/mahmoudmayaleh/Git_commit_Multi_agent.git
+cd Git_commit_Multi_agent
+
+# Install in development mode
+pip install -e .
+```
+
 ### Prerequisites
 
 - **Python 3.8+** - Required for running the pipeline
