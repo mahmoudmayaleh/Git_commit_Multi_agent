@@ -25,10 +25,10 @@ import logging
 from typing import Optional
 from pathlib import Path
 
-from state import PipelineState, StateValidator
-from llm_client import LLMClient, LLMConfig
-from agents import DiffAgent, SummaryAgent, CommitWriterAgent
-from config import Config
+from src.state import PipelineState, StateValidator
+from src.llm_client import LLMClient, LLMConfig
+from src.agents import DiffAgent, SummaryAgent, CommitWriterAgent
+from src.config import Config
 
 
 logger = logging.getLogger(__name__)

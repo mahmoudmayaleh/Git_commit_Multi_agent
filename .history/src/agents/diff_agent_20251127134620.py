@@ -10,8 +10,8 @@ import logging
 from typing import List, Optional, Tuple
 from git import Repo, GitCommandError
 from agents.base_agent import BaseAgent
-from state import PipelineState
-from llm_client import LLMClient
+from src.state import PipelineState
+from src.llm_client import LLMClient
 
 
 logger = logging.getLogger(__name__)

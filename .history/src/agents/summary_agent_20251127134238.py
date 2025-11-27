@@ -9,7 +9,7 @@ import logging
 from typing import List, Optional
 from agents.base_agent import BaseAgent
 from state import PipelineState
-from llm_client import LLMClient
+from src.llm_client import LLMClient
 
 
 logger = logging.getLogger(__name__)

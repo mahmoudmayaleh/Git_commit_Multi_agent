@@ -7,7 +7,7 @@ Defines the abstract interface that all pipeline agents must implement.
 from abc import ABC, abstractmethod
 import logging
 from typing import Optional
-from state import PipelineState
+from src.state import PipelineState
 
 
 logger = logging.getLogger(__name__)
