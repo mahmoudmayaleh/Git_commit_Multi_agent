@@ -1,0 +1,83 @@
+# Git Commit AI - Python Dependencies
+# 
+# This project uses Ollama for LLM inference (recommended)
+# Ollama must be installed separately: https://ollama.com/download
+#
+# Python 3.8+ required
+
+# ============================================================================
+# CORE DEPENDENCIES (REQUIRED)
+# ============================================================================
+
+# Git integration - for reading diffs and creating commits
+GitPython>=3.1.40
+
+# HTTP client - for communicating with Ollama API
+requests>=2.31.0
+
+# Environment configuration - for .env file support
+python-dotenv>=1.0.0
+
+# Terminal colors - for nice output formatting
+colorama>=0.4.6
+
+# ============================================================================
+# OLLAMA SETUP (REQUIRED)
+# ============================================================================
+# 
+# Ollama is NOT a Python package - install it separately:
+#
+# Windows:
+#   Download from https://ollama.com/download and run installer
+#
+# macOS:
+#   brew install ollama
+#
+# Linux:
+#   curl -fsSL https://ollama.com/install.sh | sh
+#
+# After installing Ollama:
+#   ollama pull openchat:7b
+#
+# ============================================================================
+# ALTERNATIVE: LOCAL INFERENCE (NOT RECOMMENDED)
+# ============================================================================
+#
+# If you prefer HuggingFace transformers over Ollama (slower, more complex):
+# Uncomment these and set LLM_MODE=local in .env
+#
+# transformers>=4.35.0
+# accelerate>=0.25.0
+# torch>=2.0.0  # Install separately, see below
+#
+# PyTorch Installation (if using local mode):
+#   Windows + CUDA: pip install torch --index-url https://download.pytorch.org/whl/cu118
+#   Windows CPU: pip install torch
+#   macOS: pip install torch
+#   Linux: pip install torch --index-url https://download.pytorch.org/whl/cu118
+#
+# ============================================================================
+# DEVELOPMENT DEPENDENCIES (OPTIONAL)
+# ============================================================================
+#
+# For testing and development:
+# pytest>=7.4.3
+# pytest-cov>=4.1.0
+# black>=23.12.0
+# mypy>=1.7.0
+# flake8>=6.1.0
+
+# ============================================================================
+# INSTALLATION
+# ============================================================================
+#
+# Quick install:
+#   pip install -r requirements.txt
+#
+# Full setup:
+#   1. Install Ollama: https://ollama.com/download
+#   2. Pull model: ollama pull openchat:7b
+#   3. Install Python deps: pip install -r requirements.txt
+#   4. Configure: cp .env.example .env
+#   5. Test: python main.py --dry-run
+

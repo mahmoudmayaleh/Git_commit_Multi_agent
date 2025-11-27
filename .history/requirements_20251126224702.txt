@@ -1,0 +1,34 @@
+# Git Commit Writer Pipeline - Dependencies
+# Python 3.8+ required
+
+# IMPORTANT: Install PyTorch separately first if you want local inference
+# For Windows with CUDA 11.8:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# For Windows CPU only:
+#   pip install torch torchvision torchaudio
+# For macOS:
+#   pip install torch torchvision torchaudio
+
+# Core dependencies (REQUIRED)
+GitPython>=3.1.40
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Utilities (REQUIRED)
+colorama>=0.4.6
+
+# LLM inference - For local inference (OPTIONAL - install only if using LLM_MODE=local)
+# transformers>=4.35.0
+# accelerate>=0.25.0
+
+# For API-based inference (OPTIONAL)
+# openai>=1.0.0
+
+# Data validation (OPTIONAL)
+# pydantic>=2.5.0
+
+# Development dependencies (OPTIONAL)
+# pytest>=7.4.3
+# pytest-cov>=4.1.0
+# black>=23.12.0
+# mypy>=1.7.0

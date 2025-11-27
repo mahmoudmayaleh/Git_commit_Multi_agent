@@ -1,0 +1,26 @@
+# Git Commit Writer Pipeline - Dependencies
+# Python 3.8+ required
+
+# Core dependencies
+GitPython>=3.1.40
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# LLM inference (choose based on your setup)
+# For local inference with transformers
+torch>=2.0.0
+transformers>=4.35.0
+accelerate>=0.25.0
+
+# For API-based inference (alternative)
+openai>=1.0.0  # Can be used with compatible APIs
+
+# Utilities
+colorama>=0.4.6  # For colored terminal output
+pydantic>=2.5.0  # For data validation
+
+# Development dependencies
+pytest>=7.4.3
+pytest-cov>=4.1.0
+black>=23.12.0
+mypy>=1.7.0

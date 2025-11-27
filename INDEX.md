@@ -1,0 +1,361 @@
+# 📚 Documentation Index
+
+Complete guide to all documentation files in the Git Commit Writer Pipeline.
+
+## 🚀 Start Here
+
+**New to the project?** Start with these in order:
+
+1. **[GETTING_STARTED.md](GETTING_STARTED.md)** ⭐
+
+   - 5-minute quick start
+   - Setup instructions
+   - First steps
+   - **Read this first!**
+
+2. **[README.md](README.md)**
+
+   - Project overview
+   - Architecture diagram
+   - Installation guide
+   - Key features
+
+3. **[USAGE.md](USAGE.md)**
+   - All CLI commands
+   - Configuration options
+   - Workflow examples
+   - Best practices
+
+---
+
+## 📖 Documentation Map
+
+### For Users
+
+| Document                                     | When to Read    | What You'll Learn              |
+| -------------------------------------------- | --------------- | ------------------------------ |
+| **[GETTING_STARTED.md](GETTING_STARTED.md)** | First time      | Quick setup and first run      |
+| **[README.md](README.md)**                   | Overview needed | Project goals and architecture |
+| **[USAGE.md](USAGE.md)**                     | Ready to use    | All features and options       |
+| **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** | Having issues   | Solutions to common problems   |
+
+### For Developers
+
+| Document                                         | When to Read      | What You'll Learn               |
+| ------------------------------------------------ | ----------------- | ------------------------------- |
+| **[PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)** | Want to customize | Code organization and internals |
+| **[API_REFERENCE.md](API_REFERENCE.md)**         | Building with it  | All classes and methods         |
+| **[PROJECT_COMPLETE.md](PROJECT_COMPLETE.md)**   | Full overview     | Everything in one place         |
+
+---
+
+## 📑 Document Details
+
+### 1. GETTING_STARTED.md
+
+**Purpose:** Get you running in 5 minutes  
+**Length:** ~6 pages  
+**Topics:**
+
+- Quick installation
+- Basic configuration
+- First commit message
+- Common use cases
+
+**Start here if:** You're brand new to the project
+
+---
+
+### 2. README.md
+
+**Purpose:** Project overview and setup  
+**Length:** ~5 pages  
+**Topics:**
+
+- What the pipeline does
+- Architecture diagram
+- Installation steps
+- Key features
+- Basic usage
+
+**Read this if:** You want to understand what this project is
+
+---
+
+### 3. USAGE.md
+
+**Purpose:** Complete usage guide  
+**Length:** ~8 pages  
+**Topics:**
+
+- All CLI commands and options
+- Configuration reference
+- Programmatic usage
+- Advanced features
+- Workflow examples
+- Tips and tricks
+
+**Read this if:** You want to master all features
+
+---
+
+### 4. TROUBLESHOOTING.md
+
+**Purpose:** Fix common issues  
+**Length:** ~7 pages  
+**Topics:**
+
+- Installation problems
+- LLM issues (CUDA, memory, etc.)
+- Git problems
+- Runtime errors
+- Performance tuning
+- Quick fixes table
+
+**Read this if:** Something isn't working
+
+---
+
+### 5. PROJECT_STRUCTURE.md
+
+**Purpose:** Technical deep-dive  
+**Length:** ~9 pages  
+**Topics:**
+
+- Directory structure
+- Component architecture
+- Data flow diagrams
+- State management
+- Extension points
+- Performance specs
+
+**Read this if:** You want to customize or understand internals
+
+---
+
+### 6. API_REFERENCE.md
+
+**Purpose:** Complete API documentation  
+**Length:** ~10 pages  
+**Topics:**
+
+- All classes and methods
+- Type signatures
+- Parameters and returns
+- Code examples
+- Best practices
+
+**Read this if:** You're writing code with the API
+
+---
+
+### 7. PROJECT_COMPLETE.md
+
+**Purpose:** Project completion summary  
+**Length:** ~10 pages  
+**Topics:**
+
+- Implementation summary
+- All features list
+- Technical highlights
+- Usage examples
+- Performance specs
+- Quick reference
+
+**Read this if:** You want the complete overview
+
+---
+
+## 🎯 Quick Navigation
+
+### By Task
+
+**I want to...**
+
+- **Get started quickly** → [GETTING_STARTED.md](GETTING_STARTED.md)
+- **Install the pipeline** → [README.md](README.md) → Installation
+- **Use all features** → [USAGE.md](USAGE.md)
+- **Fix an error** → [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+- **Customize agents** → [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)
+- **Use the API** → [API_REFERENCE.md](API_REFERENCE.md)
+- **See what's included** → [PROJECT_COMPLETE.md](PROJECT_COMPLETE.md)
+
+### By Role
+
+**If you are a...**
+
+- **First-time user** → [GETTING_STARTED.md](GETTING_STARTED.md)
+- **Regular user** → [USAGE.md](USAGE.md)
+- **Developer** → [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) + [API_REFERENCE.md](API_REFERENCE.md)
+- **Troubleshooter** → [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+- **Project manager** → [PROJECT_COMPLETE.md](PROJECT_COMPLETE.md)
+
+### By Question
+
+**Questions:**
+
+- "How do I install this?" → [README.md](README.md) → Installation
+- "How does it work?" → [README.md](README.md) → Architecture
+- "How do I use it?" → [USAGE.md](USAGE.md)
+- "It's not working!" → [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+- "How do I customize it?" → [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) → Extension Points
+- "What methods are available?" → [API_REFERENCE.md](API_REFERENCE.md)
+- "What's included?" → [PROJECT_COMPLETE.md](PROJECT_COMPLETE.md)
+
+---
+
+## 📊 Documentation Statistics
+
+| Metric              | Value                                                   |
+| ------------------- | ------------------------------------------------------- |
+| **Total Documents** | 7 main guides                                           |
+| **Total Pages**     | ~55 pages                                               |
+| **Code Examples**   | 50+ snippets                                            |
+| **Diagrams**        | 5 diagrams                                              |
+| **Topics Covered**  | Installation, Usage, Troubleshooting, API, Architecture |
+
+---
+
+## 🗂️ File Organization
+
+```
+code/
+├── Documentation (You are here)
+│   ├── GETTING_STARTED.md      ⭐ Start here
+│   ├── README.md               📖 Overview
+│   ├── USAGE.md                🎯 How to use
+│   ├── TROUBLESHOOTING.md      🔧 Fix issues
+│   ├── PROJECT_STRUCTURE.md    🏗️ Internals
+│   ├── API_REFERENCE.md        📚 API docs
+│   ├── PROJECT_COMPLETE.md     ✅ Summary
+│   └── INDEX.md                📑 This file
+│
+├── Code Files
+│   ├── main.py                 🎯 CLI entry point
+│   ├── pipeline.py             🔄 Orchestrator
+│   ├── state.py                📊 State management
+│   ├── llm_client.py           🧠 LLM client
+│   ├── config.py               ⚙️ Configuration
+│   └── agents/                 🤖 Agent modules
+│
+├── Tests & Examples
+│   ├── tests/test_state.py     🧪 Unit tests
+│   ├── tests/example_usage.py  💡 Examples
+│   └── quickstart.py           ✨ Setup check
+│
+└── Configuration
+    ├── .env.example            📝 Config template
+    ├── requirements.txt        📦 Dependencies
+    └── .gitignore              🚫 Git ignores
+```
+
+---
+
+## 🎓 Learning Path
+
+### Beginner Path (1-2 hours)
+
+1. Read [GETTING_STARTED.md](GETTING_STARTED.md) (15 min)
+2. Follow setup instructions (20 min)
+3. Run `python quickstart.py` (5 min)
+4. Try `python tests/example_usage.py` (10 min)
+5. Read [USAGE.md](USAGE.md) basics (20 min)
+6. Use with your own code (30 min)
+
+### Intermediate Path (2-4 hours)
+
+1. Complete Beginner Path
+2. Read [USAGE.md](USAGE.md) fully (40 min)
+3. Experiment with all CLI options (30 min)
+4. Try programmatic usage examples (30 min)
+5. Customize configuration (20 min)
+6. Read [TROUBLESHOOTING.md](TROUBLESHOOTING.md) (30 min)
+
+### Advanced Path (4-8 hours)
+
+1. Complete Intermediate Path
+2. Read [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) (60 min)
+3. Read [API_REFERENCE.md](API_REFERENCE.md) (60 min)
+4. Study agent implementations (60 min)
+5. Create custom agent (60 min)
+6. Optimize for your workflow (60 min)
+
+---
+
+## 💡 Tips for Reading
+
+### First Time
+
+- Start with [GETTING_STARTED.md](GETTING_STARTED.md)
+- Don't read everything at once
+- Try examples as you go
+- Bookmark this index page
+
+### Reference
+
+- Use Ctrl+F to search within documents
+- Check the table of contents in each doc
+- Use this index to jump between topics
+
+### Troubleshooting
+
+- Search [TROUBLESHOOTING.md](TROUBLESHOOTING.md) first
+- Check error messages carefully
+- Run with `--verbose` for details
+
+---
+
+## 🔖 Bookmarks
+
+Save these for quick access:
+
+- **Quick Start:** [GETTING_STARTED.md](GETTING_STARTED.md)
+- **Common Issues:** [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+- **All Commands:** [USAGE.md](USAGE.md) → Command-Line Options
+- **API Examples:** [API_REFERENCE.md](API_REFERENCE.md) → Usage Examples
+- **Configuration:** [USAGE.md](USAGE.md) → Configuration
+
+---
+
+## 📞 Quick Help
+
+| Issue                 | Document                                     | Section          |
+| --------------------- | -------------------------------------------- | ---------------- |
+| Can't install         | [README.md](README.md)                       | Installation     |
+| Setup problems        | [GETTING_STARTED.md](GETTING_STARTED.md)     | Step 1-3         |
+| Don't know how to use | [USAGE.md](USAGE.md)                         | Basic Usage      |
+| Getting errors        | [TROUBLESHOOTING.md](TROUBLESHOOTING.md)     | Error reference  |
+| Want to customize     | [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) | Extension Points |
+| Need API info         | [API_REFERENCE.md](API_REFERENCE.md)         | Full reference   |
+
+---
+
+## 🎯 Next Steps
+
+**Choose your path:**
+
+1. **Just want to use it?**
+   → [GETTING_STARTED.md](GETTING_STARTED.md)
+
+2. **Want to understand it?**
+   → [README.md](README.md) → [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)
+
+3. **Having problems?**
+   → [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+
+4. **Building with it?**
+   → [API_REFERENCE.md](API_REFERENCE.md)
+
+---
+
+## 📝 Document Versions
+
+All documents are version 1.0.0 (November 26, 2025)
+
+Last updated: November 26, 2025
+
+---
+
+**Happy reading! 📚**
+
+_Need help? Start with [GETTING_STARTED.md](GETTING_STARTED.md)_
