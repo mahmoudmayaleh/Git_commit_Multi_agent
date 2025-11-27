@@ -89,7 +89,7 @@ def print_banner():
     """Print application banner."""
     banner = f"""
 {Fore.CYAN}{Style.BRIGHT}{'='*70}
-   Git Commit AI - Powered by Ollama + OpenChat 7B
+   🤖 Git Commit AI - Powered by Ollama + OpenChat 7B
 {'='*70}{Style.RESET_ALL}
 """
     print(banner)

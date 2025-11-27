@@ -89,7 +89,7 @@ def print_banner():
     """Print application banner."""
     banner = f"""
 {Fore.CYAN}{Style.BRIGHT}{'='*70}
-   Git Commit AI - Powered by Ollama + OpenChat 7B
+   🤖 Git Commit AI - Powered by Ollama + OpenChat 7B
 {'='*70}{Style.RESET_ALL}
 """
     print(banner)
@@ -125,7 +125,7 @@ def display_commit_message(commit_msg: str):
         commit_msg: Commit message to display
     """
     print(f"\n{Fore.GREEN}{Style.BRIGHT}{'='*70}")
-    print("  GENERATED COMMIT MESSAGE")
+    print("  📝 GENERATED COMMIT MESSAGE")
     print(f"{'='*70}{Style.RESET_ALL}")
     print()
     

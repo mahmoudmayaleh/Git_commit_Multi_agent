@@ -151,7 +151,7 @@ class CommitPipeline:
             
             if state.commit_message:
                 print(f"\nCommit Message Generated:")
-                print(f"  {state.commit_message}")
+                print(f"  → {state.commit_message}")
             
         except Exception as e:
             logger.error(f"Pipeline failed: {e}")

@@ -71,7 +71,7 @@ class SummaryAgent(BaseAgent):
             if len(filtered_bullets) > 20:
                 print(f"     ... and {len(filtered_bullets) - 20} more")
             
-            print(f"\n  Asking AI to summarize...")
+            print(f"\n  🤖 Asking AI to summarize...")
             
             # Generate summary using LLM
             state.summary = self._generate_summary(grouped_bullets)

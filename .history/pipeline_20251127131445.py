@@ -150,8 +150,8 @@ class CommitPipeline:
             state = self._run_agent(self.commit_writer_agent, state, "COMMIT MESSAGE GENERATION")
             
             if state.commit_message:
-                print(f"\nCommit Message Generated:")
-                print(f"  {state.commit_message}")
+                print(f"\n✅ Commit Message Generated:")
+                print(f"  → {state.commit_message}")
             
         except Exception as e:
             logger.error(f"Pipeline failed: {e}")

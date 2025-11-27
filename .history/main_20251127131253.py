@@ -175,11 +175,11 @@ def perform_commit(repo_path: str, commit_msg: str) -> bool:
         repo = Repo(repo_path)
         repo.index.commit(commit_msg)
         
-        print(f"{Fore.GREEN}✓ Successfully committed!{Style.RESET_ALL}")
+        print(f"{Fore.GREEN}Successfully committed!{Style.RESET_ALL}")
         return True
         
     except Exception as e:
-        print(f"{Fore.RED}✗ Commit failed: {e}{Style.RESET_ALL}")
+        print(f"{Fore.RED}Commit failed: {e}{Style.RESET_ALL}")
         return False
 
 
@@ -194,9 +194,9 @@ def save_to_file(commit_msg: str, filepath: str):
     try:
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(commit_msg)
-        print(f"{Fore.GREEN}✓ Saved to {filepath}{Style.RESET_ALL}")
+        print(f"{Fore.GREEN}Saved to {filepath}{Style.RESET_ALL}")
     except Exception as e:
-        print(f"{Fore.RED}✗ Failed to save: {e}{Style.RESET_ALL}")
+        print(f"{Fore.RED}Failed to save: {e}{Style.RESET_ALL}")
 
 
 def main():
@@ -267,23 +267,23 @@ def main():
             debug=args.debug
         )
         
-        print(f"{Fore.GREEN}✓ Pipeline initialized{Style.RESET_ALL}\n")
+        print(f"{Fore.GREEN}Pipeline initialized{Style.RESET_ALL}\n")
         
     except Exception as e:
-        print(f"{Fore.RED}✗ Failed to initialize pipeline: {e}{Style.RESET_ALL}")
+        print(f"{Fore.RED}Failed to initialize pipeline: {e}{Style.RESET_ALL}")
         sys.exit(1)
     
     # Validate repository
     print(f"{Fore.CYAN}Checking for staged changes...{Style.RESET_ALL}")
     
     if not pipeline.validate_repository():
-        print(f"{Fore.RED}✗ No staged changes found!{Style.RESET_ALL}")
+        print(f"{Fore.RED}No staged changes found!{Style.RESET_ALL}")
         print(f"\n{Fore.YELLOW}Please stage your changes first:{Style.RESET_ALL}")
         print("  git add <files>")
         print("  git add .")
         sys.exit(1)
     
-    print(f"{Fore.GREEN}✓ Found staged changes{Style.RESET_ALL}\n")
+    print(f"{Fore.GREEN}Found staged changes{Style.RESET_ALL}\n")
     
     # Run pipeline
     print(f"{Fore.CYAN}{Style.BRIGHT}Running pipeline...{Style.RESET_ALL}\n")
@@ -293,7 +293,7 @@ def main():
     # Check for errors
     if state.has_errors():
         print(f"\n{Fore.RED}{'='*70}")
-        print("  ✗ PIPELINE FAILED")
+        print("  PIPELINE FAILED")
         print(f"{'='*70}{Style.RESET_ALL}\n")
         
         print(f"{Fore.RED}Errors:{Style.RESET_ALL}")
@@ -328,7 +328,7 @@ def main():
             print(f"{Fore.YELLOW}Dry run mode - no commit performed{Style.RESET_ALL}")
     
     else:
-        print(f"{Fore.RED}✗ Failed to generate commit message{Style.RESET_ALL}")
+        print(f"{Fore.RED}Failed to generate commit message{Style.RESET_ALL}")
         sys.exit(1)
     
     print(f"\n{Fore.GREEN}{Style.BRIGHT}Done!{Style.RESET_ALL}\n")
