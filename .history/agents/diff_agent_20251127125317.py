@@ -269,49 +269,28 @@ Bullet Points:"""
             List of detailed change descriptions
         """
         changes = []
-        seen = set()  # Avoid duplicates
         
-        # Python keywords to exclude
-        python_keywords = {
-            'if', 'else', 'elif', 'while', 'for', 'with', 'try', 'except', 
-            'finally', 'raise', 'return', 'yield', 'import', 'from', 'as',
-            'pass', 'break', 'continue', 'and', 'or', 'not', 'in', 'is',
-            'lambda', 'assert', 'del', 'global', 'nonlocal'
-        }
-        
-        # Common exception classes to exclude
-        exception_classes = {
-            'Exception', 'ValueError', 'TypeError', 'KeyError', 'IndexError',
-            'AttributeError', 'RuntimeError', 'IOError', 'OSError', 'ImportError'
-        }
+        # Look for function/method definitions
+        function_patterns = [
+            r'def\s+(\w+)\s*\(',  # Python
+            r'function\s+(\w+)\s*\(',  # JavaScript
+            r'(public|private|protected)?\s*\w+\s+(\w+)\s*\(',  # Java/C#/C++
+            r'const\s+(\w+)\s*=\s*\(',  # Arrow functions
+        ]
         
         for change_type, line in content:
             if change_type == "add":
-                # Check for function definitions (Python)
-                func_match = re.search(r'^\s*def\s+(\w+)\s*\(', line)
-                if func_match:
-                    func_name = func_match.group(1)
-                    if func_name not in seen and func_name not in python_keywords:
+                for pattern in function_patterns:
+                    match = re.search(pattern, line)
+                    if match:
+                        func_name = match.group(1) if match.lastindex == 1 else match.group(2)
                         changes.append(f"Added function `{func_name}()`")
-                        seen.add(func_name)
-                        continue
+                        break
                 
-                # Check for class definitions (Python)
-                class_match = re.search(r'^\s*class\s+(\w+)', line)
+                # Check for class definitions
+                class_match = re.search(r'class\s+(\w+)', line)
                 if class_match:
-                    class_name = class_match.group(1)
-                    if class_name not in seen and class_name not in exception_classes:
-                        changes.append(f"Added class `{class_name}`")
-                        seen.add(class_name)
-                        continue
-                
-                # Check for method definitions inside class
-                method_match = re.search(r'^\s+def\s+(\w+)\s*\(self', line)
-                if method_match:
-                    method_name = method_match.group(1)
-                    if method_name not in seen and not method_name.startswith('__'):
-                        changes.append(f"Added method `{method_name}()`")
-                        seen.add(method_name)
+                    changes.append(f"Added class `{class_match.group(1)}`")
         
         return changes
     
