@@ -36,25 +36,19 @@ This pipeline leverages **Ollama** (free, open-source LLM runtime) with **OpenCh
 
    Staged Code
 
-          git diff --staged
-
 
    DiffAgent      Parses diffs  Bullet points
 
 
+   SummaryAgent    Filters/groups  Summary
 
 
-  SummaryAgent    Filters/groups  Summary
-
-
-
-
- CommitWriter     Formats  Commit message
+   CommitWriter     Formats  Commit message
 
 
 
 
- Final Message
+   Final Message
 
 ```
 
@@ -73,22 +67,6 @@ All agents share a central `PipelineState` object:
 ```
 
 ## Installation
-
-### Quick Install (Recommended)
-
-Install directly from GitHub:
-
-```bash
-pip install git+https://github.com/mahmoudmayaleh/Git_commit_Multi_agent.git
-```
-
-After installation, you can use the command:
-
-```bash
-git-commit-ai --help
-```
-
-### Alternative: Install from Source
 
 ```bash
 # Clone the repository
