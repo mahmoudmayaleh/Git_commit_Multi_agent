@@ -1,25 +1,5 @@
 #!/usr/bin/env python3
-"""Simple safe CLI calculator
 
-Features:
-- Safe expression evaluation using Python's AST (no eval)
-- Supports +, -, *, /, %, **, unary +/-, parentheses
-- Supports math functions: sin, cos, tan, sqrt, log, exp, pow, fabs, floor, ceil
-- History navigation (command: history)
-- Memory: M+, M-, MR, MC commands
-- Other commands: help, clear, exit, quit
-
-Usage: run `python calculator.py` and type expressions at the prompt.
-Example:
-  > 2 + 3 * (4 - 1)
-  11
-  > sin(3.14/2)
-  0.999999682... 
-  > M+ 10      # add 10 to memory
-  > MR         # recall memory
-
-This file is intentionally standalone and has no external dependencies.
-"""
 #adding new comment to test git commit multi agent
 from __future__ import annotations
 
@@ -321,3 +301,22 @@ def repl() -> None:
 if __name__ == '__main__':
     repl()
 # Adding a new comment to test git commit multi agent
+
+
+"""
+
+Suggestions for new features to add to the calculator:
+
+Add a stats function (best demo IMO)
+
+Accepts multiple numbers and returns mean, median, std dev
+
+Add a convert function
+
+Convert units: temperature (C↔F), distance (m↔km), etc.
+
+Add factorial and fibonacci functions
+
+Simple math functions users recognize
+
+"""
