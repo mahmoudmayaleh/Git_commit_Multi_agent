@@ -75,33 +75,6 @@ class EvalError(Exception):
     pass
 
 
-def convert(unit_type: str, value: float) -> float:
-    """Convert between different units.
-    
-    Supported conversions:
-    - Temperature: 'c2f' (Celsius to Fahrenheit), 'f2c' (Fahrenheit to Celsius)
-    - Distance: 'm2km' (meters to km), 'km2m' (km to meters), 'mi2km', 'km2mi'
-    - Weight: 'kg2lb' (kilograms to pounds), 'lb2kg' (pounds to kilograms)
-    
-    Example: convert('c2f', 100) -> 212.0
-    """
-    conversions = {
-        'c2f': lambda v: (v * 9/5) + 32,
-        'f2c': lambda v: (v - 32) * 5/9,
-        'm2km': lambda v: v / 1000,
-        'km2m': lambda v: v * 1000,
-        'mi2km': lambda v: v * 1.60934,
-        'km2mi': lambda v: v / 1.60934,
-        'kg2lb': lambda v: v * 2.20462,
-        'lb2kg': lambda v: v / 2.20462,
-    }
-    
-    if unit_type.lower() not in conversions:
-        raise ValueError(f"Unknown conversion: {unit_type}. Try: {', '.join(conversions.keys())}")
-    
-    return conversions[unit_type.lower()](value)
-
-
 def _eval_node(node: ast.AST, names: Dict[str, Any]) -> Any:
     """Evaluate an AST node safely using whitelisted nodes."""
     if isinstance(node, ast.Expression):
@@ -144,17 +117,14 @@ def _eval_node(node: ast.AST, names: Dict[str, Any]) -> Any:
                     return func(*args)
                 except Exception as e:
                     raise EvalError(str(e))
-            # allow use of 'abs', 'round', and 'convert'
+            # allow use of 'abs' and 'round'
             if func_name == 'abs':
                 args = [_eval_node(arg, names) for arg in node.args]
                 return abs(*args)
             if func_name == 'round':
                 args = [_eval_node(arg, names) for arg in node.args]
                 return round(*args)
-            if func_name == 'convert':
-                args = [_eval_node(arg, names) for arg in node.args]
-                return convert(*args)
-        raise EvalError("Only math functions are allowed (e.g. sin, cos, sqrt, convert)")
+        raise EvalError("Only math functions are allowed (e.g. sin, cos, sqrt)")
 
     if isinstance(node, ast.Name):
         if node.id in names:
@@ -193,11 +163,7 @@ def print_help() -> None:
     print("Simple CLI calculator")
     print("Enter arithmetic expressions using + - * / % ** and parentheses.")
     print("Available functions: " + ", ".join(sorted(_MATH_FUNCS.keys())))
-    print("\nSpecial functions:")
-    print("  convert(type, value) - Unit conversion (c2f, f2c, m2km, km2m, mi2km, km2mi, kg2lb, lb2kg)")
-    print("    Example: convert('c2f', 100) → 212")
-    print("  abs(x), round(x, decimals)")
-    print("\nCommands:")
+    print("Commands:")
     print("  help        Show this help")
     print("  history     Show evaluation history")
     print("  last        Recall last calculation result")
