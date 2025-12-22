@@ -35,3 +35,8 @@ Thumbs.db
 # Package builds
 *.whl
 *.tar.gz
+# Data directories (evaluation datasets, results, extracted data)
+evaluation/data/
+data/
+*.csv
+*.json
