@@ -39,6 +39,8 @@ This pipeline leverages **Ollama** (free, open-source LLM runtime) with **OpenCh
 
    DiffAgent      Parses diffs  Bullet points
 
+   ContextAgent   Add bullet points on where the commit is done inside the repo
+
 
    SummaryAgent    Filters/groups  Summary
 
@@ -60,6 +62,7 @@ All agents share a central `PipelineState` object:
 {
     "staged_diff": str,           # Raw git diff output
     "bullet_points": List[str],   # Parsed changes
+    "context_bullet_points": List[str],   # Parsed changes
     "summary": str,               # Concise summary
     "commit_message": str,        # Final output
     "errors": List[str]           # Error tracking
@@ -258,7 +261,7 @@ python main.py --quiet
 git add src/api/routes.py src/controllers/user_controller.py
 python main.py
 
-# Generated: "feat(api): add user profile retrieval endpoint"
+# Generated: "feat(api): add user profile retrieval endpoint on main branch"
 ```
 
 **Example 2: Bug Fix**
@@ -268,7 +271,7 @@ python main.py
 git add src/utils/calculator.py tests/test_calculator.py
 python main.py
 
-# Generated: "fix(calculator): correct floating point precision in division"
+# Generated: "fix(calculator): correct floating point precision in division on main branch"
 ```
 
 **Example 3: Refactoring**
@@ -278,7 +281,7 @@ python main.py
 git add src/
 python main.py
 
-# Generated: "refactor(core): restructure module organization for better maintainability"
+# Generated: "refactor(core): restructure module organization for better maintainability on main branch"
 ```
 
 ### Programmatic Usage
@@ -300,7 +303,7 @@ print(result.bullet_points)
 
 ## Pipeline Flow
 
-### 1. DiffAgent
+### 1. DiffAgent and ContextAgent
 
 ```python
 Input:  git diff --staged (raw text)
@@ -308,6 +311,9 @@ Output: [
     " Added new function `calculate_total()` in utils/math.py",
     " Updated API endpoint `/users` in routes/api.py",
     " Removed deprecated `oldFunction()` from legacy/code.py"
+]
+Output of context: [
+    "Changes applied at repository root on branch `{branch}`."
 ]
 ```
 
