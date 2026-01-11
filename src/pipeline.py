@@ -8,7 +8,7 @@ The pipeline uses Ollama + OpenChat 7B by default for LLM-powered summarization
 and commit message generation.
 
 Execution Flow:
-    1. DiffAgent - Parse git diff --staged into structured bullet points
+    1. DiffAgent & ContextAgent - Run in parallel to gather git diff and context
     2. SummaryAgent - Use LLM to create concise summary from bullet points
     3. CommitWriterAgent - Use LLM to format summary into conventional commit
     
@@ -22,12 +22,13 @@ Error Handling:
 """
 
 import logging
+import threading
 from typing import Optional
 from pathlib import Path
 
 from src.state import PipelineState, StateValidator
 from src.llm_client import LLMClient, LLMConfig
-from src.agents import DiffAgent, SummaryAgent, CommitWriterAgent
+from src.agents import DiffAgent, SummaryAgent, CommitWriterAgent, ContextAgent
 from src.config import Config
 
 
@@ -38,11 +39,11 @@ class CommitPipeline:
     """
     Main pipeline orchestrator for AI-powered commit message generation.
     
-    This class coordinates three specialized agents that work together to
+    This class coordinates specialized agents that work together to
     transform raw git diffs into professional conventional commit messages.
     
     Pipeline Stages:
-        1. DiffAgent - Parses `git diff --staged` into human-readable changes
+        1. DiffAgent & ContextAgent - Run in parallel to gather information
         2. SummaryAgent - Uses Ollama LLM to create a concise summary
         3. CommitWriterAgent - Uses Ollama LLM to format as conventional commit
     
@@ -72,6 +73,7 @@ class CommitPipeline:
         """
         self.repo_path = repo_path or Config.GIT_REPO_PATH
         self.debug = debug or Config.DEBUG_MODE
+        self.state_lock = threading.Lock()  # Lock for thread-safe state access
         
         # Initialize LLM client
         if llm_client is None:
@@ -85,6 +87,11 @@ class CommitPipeline:
             repo_path=self.repo_path,
             use_llm=Config.USE_LLM_FOR_DIFF,
             llm_client=self.llm_client if Config.USE_LLM_FOR_DIFF else None
+        )
+        
+        self.context_agent = ContextAgent(
+            repo_path=self.repo_path,
+            llm_client=self.llm_client
         )
         
         self.summary_agent = SummaryAgent(
@@ -114,11 +121,28 @@ class CommitPipeline:
             state = PipelineState()
         
         try:
-            # Step 1: DiffAgent - Parse Git changes
+            # Step 1: Run DiffAgent and ContextAgent in parallel (no dependency)
             print(f"\n{'='*70}")
-            print(f"  STEP 1: Analyzing Git Changes")
+            print(f"  STEP 1: Analyzing Git Changes & Context (Parallel)")
             print(f"{'='*70}")
-            state = self._run_agent(self.diff_agent, state, "DIFF ANALYSIS")
+            
+            # Create threads for parallel execution
+            t1 = threading.Thread(
+                target=self._run_agent_thread,
+                args=(self.diff_agent, state, "DIFF ANALYSIS")
+            )
+            t2 = threading.Thread(
+                target=self._run_agent_thread,
+                args=(self.context_agent, state, "CONTEXT ANALYSIS")
+            )
+            
+            # Start both threads
+            t1.start()
+            t2.start()
+            
+            # Wait for both to complete
+            t1.join()
+            t2.join()
             
             if state.bullet_points:
                 print(f"\nChanges detected ({len(state.bullet_points)} items):")
@@ -158,6 +182,27 @@ class CommitPipeline:
             state.add_error(str(e), "Pipeline")
         
         return state
+    
+    def _run_agent_thread(self, agent, state: PipelineState, stage_name: str):
+        """
+        Run a single agent in a thread (for parallel execution).
+        
+        Args:
+            agent: Agent to run
+            state: Current state (shared between threads)
+            stage_name: Name of the stage for logging
+        """
+        logger.info(f"\n{'*'*60}")
+        logger.info(f"STAGE: {stage_name} (Thread)")
+        logger.info(f"{'*'*60}\n")
+        
+        try:
+            with self.state_lock:
+                agent.process(state)
+        except Exception as e:
+            logger.error(f"Agent {agent.name} failed: {e}")
+            with self.state_lock:
+                state.add_error(str(e), agent.name)
     
     def _run_agent(self, agent, state: PipelineState, stage_name: str) -> PipelineState:
         """

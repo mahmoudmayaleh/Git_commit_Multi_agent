@@ -18,13 +18,16 @@ class PipelineState:
     
     Attributes:
         staged_diff: Raw output from 'git diff --staged'
+        context_bullets: output from context agent (1–2 bullets describing where the commit happens)
         bullet_points: List of parsed changes from DiffAgent
         summary: Concise summary from SummaryAgent
         commit_message: Final commit message from CommitWriterAgent
         errors: List of errors encountered during processing
         metadata: Additional metadata for debugging and tracking
+
     """
     staged_diff: Optional[str] = None
+    context_bullets: Optional[str] = None
     bullet_points: Optional[List[str]] = None
     summary: Optional[str] = None
     commit_message: Optional[str] = None
