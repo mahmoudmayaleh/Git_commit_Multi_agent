@@ -1,8 +1,8 @@
 """
 SummaryAgent
 
-This agent takes the bullet points from DiffAgent and produces a concise,
-context-aware summary by filtering, grouping, and condensing the information.
+This agent takes the bullet points from DiffAgent and ContextAgent, then produces 
+a concise, context-aware summary by filtering, grouping, and condensing the information.
 """
 
 import logging
@@ -20,7 +20,7 @@ class SummaryAgent(BaseAgent):
     Agent that summarizes and filters bullet points into a concise summary.
     
     This agent:
-    1. Receives bullet points from DiffAgent
+    1. Receives bullet points from DiffAgent and context from ContextAgent
     2. Groups related changes together
     3. Filters out noise and unimportant details
     4. Generates a clear, context-aware summary
@@ -58,10 +58,21 @@ class SummaryAgent(BaseAgent):
                 logger.warning("No bullet points found in state")
                 return state
             
-            print(f"  Received {len(state.bullet_points)} changes to summarize")
+            # Combine context bullets and diff bullets
+            bullets = []
+            
+            # Prepend lightweight repository context if available
+            if state.context_bullets:
+                bullets.extend(state.context_bullets)
+            
+            bullets.extend(state.bullet_points)
+            
+            print(f"  Received {len(bullets)} changes to summarize")
+            if state.context_bullets:
+                print(f"    ({len(state.context_bullets)} context + {len(state.bullet_points)} diff changes)")
             
             # Filter and group bullet points
-            filtered_bullets = self._filter_bullet_points(state.bullet_points)
+            filtered_bullets = self._filter_bullet_points(bullets)
             grouped_bullets = self._group_bullet_points(filtered_bullets)
             
             print(f"  Filtered down to {len(filtered_bullets)} relevant changes")
@@ -77,7 +88,7 @@ class SummaryAgent(BaseAgent):
             state.summary = self._generate_summary(grouped_bullets)
             
             # Store metadata
-            state.metadata["original_bullet_count"] = len(state.bullet_points)
+            state.metadata["original_bullet_count"] = len(bullets)
             state.metadata["filtered_bullet_count"] = len(filtered_bullets)
             state.metadata["summary_length"] = len(state.summary)
             
